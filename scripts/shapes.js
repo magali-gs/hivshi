@@ -38,13 +38,17 @@ const mouseControl = MouseConstraint.create(engine, {
 });
 
 const createShape = (x, y) => {
-  return Bodies.circle(x, y, 20 + 20 * Math.random(),  {
+  return Bodies.rectangle(x, y, 38, 50,  {
     chamfer: {
       radius: 10,
     },     
     frictionAir: 0.05,
     render: {
-      fillStyle: 'red',
+      sprite: {
+        texture: '../assets/outline-2x.png',
+        yScale: 0.5,
+        xScale: 0.5,
+      }
     }
   })
 }
