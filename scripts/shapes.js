@@ -22,8 +22,21 @@ const renderer = Render.create({
 });
 
 const createShape = (x, y) => {
-  return Bodies.circle(x, y, 20 + 20 * Math.random())
+  return Bodies.circle(x, y, 20 + 20 * Math.random(),  {
+    render: {
+      fillStyle: 'red',
+    }
+  })
 }
+
+const bigBall = Bodies.circle(width / 2, height / 2, 250, {
+  isStatic: true,
+  render: {
+    fillStyle: '#ffffff',
+  }
+});
+
+World.add(engine.world, [bigBall]);
 
 document.addEventListener('click', (e) => {
   const shape = createShape(e.pageX, e.pageY)
