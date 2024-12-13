@@ -1,5 +1,5 @@
 // Aliases
-const { Bodies, Engine, MouseConstraint, Render, World } = Matter;
+const { Bodies, Composites, Engine, MouseConstraint, Render, World } = Matter;
 
 const sectionTag = document.querySelector('section.shapes');
 const width = window.innerWidth;
@@ -39,6 +39,10 @@ const mouseControl = MouseConstraint.create(engine, {
 
 const createShape = (x, y) => {
   return Bodies.circle(x, y, 20 + 20 * Math.random(),  {
+    chamfer: {
+      radius: 10,
+    },     
+    frictionAir: 0.05,
     render: {
       fillStyle: 'red',
     }
@@ -60,9 +64,14 @@ const leftWall = Bodies.rectangle(-50, height / 2, 100, height + 100, wallOption
 
 const rightWall = Bodies.rectangle(width + 50, height / 2, 100, height + 100, wallOptions);
 
+const initialShapes = Composites.stack(50, 50, 15, 5, 40, 40, (x, y) => {
+  return createShape(x, y);
+});
+
 World.add(engine.world, [
   bigBall, 
   ceiling,
+  initialShapes,
   ground,
   leftWall,
   mouseControl,
