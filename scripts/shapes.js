@@ -5,6 +5,13 @@ const sectionTag = document.querySelector('section.shapes');
 const width = window.innerWidth;
 const height = window.innerHeight;
 
+const wallOptions = {
+  isStatic: true,
+  render: {
+    visible: false,
+  }
+};
+
 // Engine: the computation and math behind 
 const engine = Engine.create();
 // Renderer: this draw the engine
@@ -36,16 +43,20 @@ const bigBall = Bodies.circle(width / 2, height / 2, 250, {
   }
 });
 
-const ground = Bodies.rectangle(width / 2, height + 50, width + 100, 100, {
-  isStatic: true,
-  render: {
-    visible: false,
-  }
-})
+const ground = Bodies.rectangle(width / 2, height + 50, width + 100, 100, wallOptions)
+
+const ceiling = Bodies.rectangle(width / 2, - 50, width + 100, 100, wallOptions)
+
+const leftWall = Bodies.rectangle(-50, height / 2, 100, height + 100, wallOptions)
+
+const rightWall = Bodies.rectangle(width + 50, height / 2, 100, height + 100, wallOptions)
 
 World.add(engine.world, [
   bigBall, 
   ground,
+  ceiling,
+  leftWall,
+  rightWall,
 ]);
 
 document.addEventListener('click', (e) => {
