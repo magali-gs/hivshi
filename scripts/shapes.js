@@ -45,7 +45,7 @@ const createShape = (x, y) => {
     frictionAir: 0.05,
     render: {
       sprite: {
-        texture: '../assets/outline-2x.png',
+        texture: './assets/outline-2x.png',
         yScale: 0.5,
         xScale: 0.5,
       }
