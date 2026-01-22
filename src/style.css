@@ -12,6 +12,13 @@ body {
     color: #333333;
 }
 
-section {
-    
+section.split {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    mix-blend-mode: difference;
+    pointer-events: none;
 }
